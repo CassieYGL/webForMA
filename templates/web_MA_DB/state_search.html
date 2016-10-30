@@ -1,0 +1,25 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+    <div class = "row" align="center">
+		<form id="search_form" method="GET" action = "/web_MA_DB/state_search_result/" >
+
+    	   {% csrf_token %}
+    	   {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+
+            <table>
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                <tr>
+                    <td>{{ field.label}}<br/></td>                    
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br/>
+
+            <input type="submit" name="submit" value = "See results"/>
+        </form>
+    </div>
+{% endblock%}

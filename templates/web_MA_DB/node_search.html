@@ -1,0 +1,31 @@
+{% extends 'web_MA_DB/blank.html'%}
+{% block content%}      
+    
+    <div class = 'row' align="center">
+        {% csrf_token %}
+        <form id="custom_form" method="GET" action = "/web_MA_DB/node_search_results/" >
+            {% csrf_token %}
+         
+           {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <table >
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                <tr>
+                    <td height='50'>{{ field.label}}</td>&nbsp;
+                    <td height = "50">{{ field }}</td>
+                </tr>
+    
+            {% endfor %}
+            </table>
+            <tr>
+                <td><input type="submit" name="submit" value = "Search"/></td></tr>
+        </form>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+{%endblock%}  

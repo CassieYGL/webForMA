@@ -1,0 +1,44 @@
+{% extends 'web_MA_DB/blank.html'%}
+
+{% block content%}   
+
+    Search Results:
+    <br/>
+     {% if results %}
+        <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Node</th>
+                        <th>Description</th>
+                        <th>Service</th>
+                        <th>Instrument</th>
+                        <th>Person</th>
+                        <th>Organization</th>
+                        <th>No.Sample</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+           
+                <tbody>
+                {% for p in results %}
+                    <tr>
+                        <td>{{p.node}}</td>
+                        <td>{{p.description}}</td>
+                        <td>{{p.service}}</td>
+                        <td>{{p.instrument}}</td>
+                        <td>{{p.person}}</td>
+                        <td>{{p.organization}}</td>
+                        <td>{{p.num_sample}}</td>
+                        <td>{{p.pro_date}}</td>               
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+
+
+	{%else%}
+           <br/>
+    		<p>No results</p>
+	{% endif %}
+	
+{% endblock%}

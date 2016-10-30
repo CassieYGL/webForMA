@@ -1,0 +1,112 @@
+{% extends 'web_MA_DB/blank.html'%}
+{% block content%}
+        {% load static %}
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+        {% if info%}
+        <div class = "row" align="center">
+          <h4>{{info}}</h4>
+          <a href = "/web_MA_DB/fund_chart/"><h5>Return to search</h5></a>
+        </div>
+        {% else %}
+
+        {% if form%}
+        <div class = 'row' align="center">
+        {% csrf_token %}
+        <form id="form" method="POST" action = "/web_MA_DB/fund_chart/" >
+            {% csrf_token %}
+         
+           {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <table >
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                <tr>
+                    <td height='50'>{{ field.label}}</td>&nbsp;
+                    <td height = "50">{{ field }}</td>
+                </tr>
+    
+            {% endfor %}
+            </table>
+            <tr>
+                <td><input type="submit" name="submit" value = "Search"/></td></tr>
+        </form>
+        </div>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        {% else %}
+
+        <script>
+        var cat1 = {{cat1}}
+        var cat2 = {{cat2}}
+        var cat3 = {{cat3}}
+
+        </script>
+    <script>
+     $(document).ready(function(){
+
+        Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+        return {
+            radialGradient: {
+                cx: 0.5,
+                cy: 0.3,
+                r: 0.7
+            },
+            stops: [
+                [0, color],
+                [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            ]
+        };
+    });
+
+
+        chart = new Highcharts.Chart({
+            chart:{
+                renderTo:'piechart',
+                type:'pie',
+                marginLeft:45,
+                marginBottom:0,
+                marginTop:-10,
+            },
+
+            title:{
+                text :'Aggregation',
+                marginRight:20,
+            },
+
+
+
+            plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+
+            series:[{
+                type:'pie',
+                name:'Income source',
+                data:[['1.University & Academic Institutes',cat1],['2.Government Institutes',cat2],['3.Commercial Company',cat3]
+                ]}]
+        });
+
+     });   
+                       
+    </script>       
+    	<div id ="piechart" align ="center"></div>
+    {%endif %}
+{%endif%}
+           
+{%endblock%}       

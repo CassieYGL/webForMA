@@ -1,0 +1,53 @@
+{% extends 'web_MA_DB/blank.html'%}
+
+
+  {% block content%}
+
+        
+    	<form id="search_form" method="GET" action = "/web_MA_DB/type_search_results/" >
+
+    	   {% csrf_token %}
+    	   {% for hidden in form1.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <table>
+            {% for field in form1.visible_fields %}
+                {{ field.errors }}
+                <tr>
+                    <td>{{ field.label}}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br/>
+            <input type="submit" name="submit" value = "Search"/>
+        </form>
+
+        <form id="search_form" method="GET" action = "/web_MA_DB/state_search/" >
+
+           {% csrf_token %}
+           {% for hidden in form2.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <table>
+            {% for field in form2.visible_fields %}
+                {{ field.errors }}
+                <tr>
+                    <td>{{ field.label}}</td>
+                    <td>{{ field }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br/>
+            <input type="submit" name="submit" value = "Search"/>
+        </form>
+
+
+
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+
+{% endblock %}

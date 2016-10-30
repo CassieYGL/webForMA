@@ -1,0 +1,111 @@
+<html>
+	<head>
+		<title>MA_DB</title>
+		{% load static%}
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+		<script src = "https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="http://code.highcharts.com/highcharts-3d.js"></script> 
+        <script src="/js/themes/dark-blue.js"></script> 
+
+
+
+
+    <script>
+    	
+    	var years = {{years|safe}}    	
+    	var cat1 = {{cat1|safe}}
+    	var cat2 ={{cat2|safe}}
+    	var cat3 ={{cat3|safe}}
+    	
+    		
+
+    </script>
+
+    <script>
+    	$(document).ready(function(){
+
+            Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+            return {
+                radialGradient: {
+                    cx: 0.5,
+                    cy: 0.3,
+                    r: 0.7
+                },
+                stops: [
+                    [0, color],
+                    [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+                ]
+            };
+        });
+
+    		chart = new Highcharts.Chart({
+
+    			chart:{
+    				renderTo:'columnchart',
+    				type:'column',
+    			},
+    			title:{
+    				text: 'Fund VS Income'
+    			},
+    			xAxis:{
+    				categories:years
+    			},
+    			yAxis:{
+    				min:0,
+    				title:{
+    					text: 'Service income'
+    				},
+    				stackLabels:{
+    					enabled: true,
+    					style:{
+    						fontWeight: 'bold',
+    						color: (Highcharts.theme && Highcgarts.theme.textColor) || 'black'
+    				}
+    			}
+    		},
+
+    		legend:{
+    			align :'center',
+    			x: -30,
+    			verticalAlign: 'bottom',
+    			y: 12,
+    			floating: false,
+    			backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+    			borderColor: '#CCC',
+    			borderWidth: 1,
+    			shadow: false
+    		},
+
+    		plotOptions: {
+    			column: {
+    				stacking: 'normal',
+    				dataLabels: {
+    					enabled: true,
+    					color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+    				}
+    			}
+        	},
+
+        	series: [{
+        		name: 'University',
+        		data: cat1
+        	},{
+        		name: 'Government',
+        		data: cat2
+        	},{
+        		name: 'Commercial',
+        		data: cat3
+        	}]
+
+    		});
+		});
+	</script>
+	</head>
+	<body>
+		<div id = 'columnchart' align = "center"></div>
+
+	</body>
+</html>
+
+

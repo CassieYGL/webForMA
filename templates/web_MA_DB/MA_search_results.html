@@ -1,0 +1,162 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+
+           
+        {% if info%}
+            <br/><h5>{{info}}</h5>
+        {% else %}
+        <h3>{{from}} - {{to}}</h3>
+     
+        {% if State%}
+        <table class="table table-striped">
+            <caption style="font-size:18px;" class="text-left"> Customer Details by State</caption>
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>No.Sale</th>
+                        <th>No. Customer</th>
+                        <th>No.Invoice</th>
+                        <th>No.Sample</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for group in State %}
+                    <tr>
+                       {%for d in group %}
+                            <td>{{d}}</td>   
+                       {%endfor%}                     
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+        <form id ='downLoad_form' method = 'POST' action = '#' >
+                    {% csrf_token %}
+            <input type="submit" name="state_excel" value = "Download as Excel"/>
+        </form>
+        <br/>
+        {%endif%}
+
+
+        {% if UserDefined_1%}
+        <table class="table table-striped">
+            <caption style="font-size:18px;" class="text-left">Customer Details by UserDefined_1</caption>
+                <thead>
+                    <tr>
+                        <th>UserDefined_1</th>
+                        <th>No.Sale</th>
+                        <th>No. Customer</th>
+                        <th>No.Invoice</th>
+                        <th>No.Sample</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for group in UserDefined_1 %}
+                    <tr>
+                       {%for d in group %}
+                            <td>{{d}}</td>   
+                       {%endfor%}                     
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+        <form id ='downLoad_form' method = 'POST' action = '#' >
+                    {% csrf_token %}
+            <input type="submit" name="type_excel" value = "Download as Excel"/>
+        </form>
+        <br/>
+        {%endif%}
+
+        {% if UserDefined_2%}
+        <table class="table table-striped">
+            <caption style="font-size:18px;" class="text-left">Customer Details by UserDefined_2</caption>
+                <thead>
+                    <tr>
+                        <th>UserDefined_2</th>
+                        <th>No.Sale</th>
+                        <th>No. Customer</th>
+                        <th>No.Invoice</th>
+                        <th>No.Sample</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for group in UserDefined_2 %}
+                    <tr>
+                       {%for d in group %}
+                            <td>{{d}}</td>   
+                       {%endfor%}                     
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+        <form id ='downLoad_form' method = 'POST' action = '#' >
+                    {% csrf_token %}
+            <input type="submit" name="field_excel" value = "Download as Excel"/>
+        </form>
+        <br/>
+        {%endif%}
+
+        {% if Category %}
+        <table class="table table-striped">
+            <caption style="font-size:18px;" class="text-left">Customer Details by Category </caption>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>No.Sale</th>
+                        <th>No. Customer</th>
+                        <th>No.Invoice</th>
+                        <th>No.Sample</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for group in Category %}
+                    <tr>
+                       {%for d in group %}
+                            <td>{{d}}</td>   
+                       {%endfor%}                     
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+        <form id ='downLoad_form' method = 'POST' action = '#' >
+                    {% csrf_token %}
+            <input type="submit" name="cat_excel" value = "Download as Excel"/>
+        </form>
+        <br/>
+        {%endif%}
+
+        {% if Sum %}
+        <table class="table table-striped">
+            <caption style="font-size:18px;" class="text-left">Annual Customer Details</caption>
+                <thead>
+                    <tr>
+                   
+                        <th>Sales($)</th>
+                        <th>No. Customer</th>
+                        <th>No.Invoice</th>
+                        <th>No.Sample</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                {% for group in Sum %}
+                    <tr>
+                       {%for d in group %}
+                            <td>{{d}}</td>   
+                       {%endfor%}                     
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+        <form id ='downLoad_form' method = 'POST' action = '#' >
+                    {% csrf_token %}
+            <input type="submit" name="sum_excel" value = "Download as Excel"/>
+        </form>
+        <br/>
+        {%endif%}
+
+
+    {% endif %}
+    <br/>
+
+
+{% endblock %}

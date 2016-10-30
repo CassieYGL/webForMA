@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>MA_DB</title>
+    </head>
+
+    <body>
+        <h1>Register as the only administrator</h1>
+
+        {% if registered %}
+        MA_DB says: <strong>thank you for registering!</strong>
+        <a href="/web_MA_DB/login/">Login as the adminstrator.</a><br />
+        {% else %}
+        MA_DB says: <strong>register here!</strong><br />
+
+        <form id="user_form" method="post" action="/web_MA_DB/register/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+            <!-- Display each form. The as_p method wraps each element in a paragraph
+                 (<p>) element. This ensures each element appears on a new line,
+                 making everything look neater. -->
+            {{ form.as_p }}
+            <!-- {{ profile_form.as_p }} -->
+
+            <!-- Provide a button to click to submit the form. -->
+            <input type="submit" name="submit" value="Register" />            
+
+        </form>
+       
+        {% endif %}
+    </body>
+</html>

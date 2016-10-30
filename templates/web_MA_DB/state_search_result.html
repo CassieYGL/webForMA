@@ -1,0 +1,49 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+
+    	{% if info %}
+            {{info}}
+        {% else %}
+        <table class="table table-striped">
+            <caption style="font-size:20px;" class="text-left">{{from}} - {{to}} Customer Details by State</caption>
+                <thead>
+                    <tr>
+                        <th>State</th>
+                        <th>Sales($)</th>
+                        <th>No. Customer</th>
+                        <th>No.Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for group in data %}
+                    <tr>
+                       {%for d in group %}
+                            <td>{{d}}</td>   
+                       {%endfor%}                     
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+
+        <form id ='downLoad_form' method = 'POST' action = '#' >
+                    {% csrf_token %}
+            <input type="submit" name="excel" value = "Download as Excel"/>
+
+        </form>
+        <br/>
+        <br/>
+
+        {%endif%}
+
+
+
+<!-- 
+
+    	{%for group in per_node%}
+    		<ul>
+    			{% for d in group %}
+    				<li>{{d}}</li>
+    			{% endfor %}
+    		</ul>   		
+    	{% endfor %} -->
+{% endblock %}

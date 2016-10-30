@@ -1,0 +1,25 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+
+        <table class="table table-striped">
+            <caption style="font-size:20px;" class="text-left">Peroid Reconcilliation</caption>
+                <thead>
+                    <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Reconcilliation</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{start}}</td>
+                        <td>{{end}}</td>
+                        <td>${{data}}</td>
+                    </tr>
+                </tbody>
+        </table>
+        <br/>
+        <br/>
+
+
+{% endblock %}

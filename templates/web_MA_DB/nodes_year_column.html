@@ -1,0 +1,123 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+		{% load static%}
+		<script src = "https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js" type="text/javascript"></script>
+		<script src = "https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+
+{{years}}
+{{start}}
+{{end}}
+    <script>
+    	
+    	var years = {{years|safe}}    	
+    	var awri = {{AWRI|safe}}
+    	var murdoch ={{Murdoch|safe}}
+    	var uq ={{UQ|safe}}
+    	var um = {{UM|safe}}
+    	var uwa = {{UWA|safe}}
+    		
+    </script>
+
+    <script>
+    	$(document).ready(function(){
+
+
+            //     Highcharts.getOptions().colors = Highcharts.map(Highcharts.getOptions().colors, function (color) {
+            //     return {
+            //         radialGradient: {
+            //             cx: 0.5,
+            //             cy: 0.3,
+            //             r: 0.7
+            //         },
+            //         stops: [
+            //             [0, color],
+            //             [1, Highcharts.Color(color).brighten(-0.3).get('rgb')] // darken
+            //         ]
+            //     };
+            // });
+
+
+    		chart = new Highcharts.Chart({
+
+    			chart:{
+    				renderTo:'columnchart',
+    				type:'column',
+                     fontFamily: 'Dosis, sans-serif',
+    			},
+    			title:{
+    				text: 'Nodes Year Income',
+                    style: {
+                        fontSize: '16px',
+                        fontWeight: 'bold',
+                        textTransform: 'uppercase'
+                    }
+    			},
+    			xAxis:{
+    				categories:years
+    			},
+    			yAxis:{
+    				min:0,
+    				title:{
+    					text: 'Service income'
+    				},
+    				stackLabels:{
+    					enabled: true,
+    					style:{
+    						fontWeight: 'bold',
+    						color: (Highcharts.theme && Highcgarts.theme.textColor) || 'gray'
+    				}
+    			}
+    		},
+
+    		legend:{
+    			align :'center',
+    			x: -30,
+    			verticalAlign: 'bottom',
+    			y: 20,
+    			floating: true,
+    			backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+    			borderColor: '#CCC',
+    			borderWidth: 1,
+    			shadow: false
+    		},
+
+    		plotOptions: {
+    			column: {
+    				stacking: 'normal',
+    				dataLabels: {
+    					enabled: false,
+
+    				}
+    			}
+        	},
+
+
+
+        	series: [{
+        		name: 'AWRI',
+        		data: awri
+        	},{
+        		name: 'Murdoch',
+        		data: murdoch
+        	},{
+        		name: 'UQ',
+        		data: uq
+        	},{
+        		name: 'UM',
+        		data: um
+        	},{
+        		name: 'UWA',
+        		data: uwa
+        	}]
+
+    		});
+		});
+	</script>
+	</head>
+	<body>
+		<div id = 'columnchart' align = "center"></div>
+{%endblock%}
+
+

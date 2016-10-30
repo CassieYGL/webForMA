@@ -1,0 +1,41 @@
+{% extends 'web_MA_DB/blank.html'%}
+{% block content %}
+		{% if node %}
+    	<h1><a href = "/web_MA_DB/node/{{node.slug}}/">{{ node_name }}</a></h1>
+    	    {% if projects %}
+    	   <!--  <ul>
+    	    	{% for project in projects %}
+    	    	<li>{{project.description}}</li>
+                {% endfor %}
+    	    </ul> -->
+            <table class="table table-striped">
+                <caption style="font-size:20px;" class="text-left">Projects Index</caption>
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for project in projects %}
+                    <tr>
+                        <td>{{project.description}}</td>
+                        <td><a href="/web_MA_DB/{{project.pro_id}}/project_detail/">See details</td>
+                    </tr>
+                {%endfor%}
+                </tbody>
+            </table>
+
+    	    {% else %}
+    	        <strong> No projects yet in this node.</strong>
+    	    {% endif %}
+    	{% else %}
+    	    The node {{node_name}} does not exist!
+    	{% endif %}
+    	<h4 align = "right"><a href = "/web_MA_DB/node/{{node.slug}}/">Return</a></h4>
+    	<br/>
+    	<br/>
+
+
+
+{%endblock%}

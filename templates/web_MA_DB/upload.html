@@ -1,0 +1,59 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+
+
+        {%if warning%}
+        <br>
+        <br/>
+        <br/>
+        <div class = "row" align ="center">
+            <h4>{{warning}}</h4>
+            <br/>
+            <a href= "/web_MA_DB/upload/"><h5>Return to upload</h5></a>
+        </div>
+        {% else %}
+
+        {%if info%}
+        <br>
+        <br/>
+        <br/>
+        <div class = "row" align ="center">
+            <h4>{{info}}</h4>
+            <br/>
+            <a href= "/web_MA_DB/homepage/"><h5>Return to homepage</h5></a>
+        </div>
+        {% else %}
+		<form id="search_form" method="POST" enctype="multipart/form-data"  >
+
+    	   {% csrf_token %}
+    	   {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <table align = 'center'>
+      
+            {% for field in form.visible_fields %}
+                
+                <tr>
+                    <td height = "40">{{ field.label}} &nbsp;&nbsp;<td/>
+                    <td height = "40">{{ field }}</td>
+                    <br/>
+                </tr>
+            {% endfor %}
+
+            </table>
+            <br/>
+            <div class = 'row' align='center'>
+
+                 <input  type="submit" name="submit" value = "Import"/>
+            </div>
+            <br/>
+
+           
+        </form>
+        {%endif%}
+    {%endif%}
+
+        <br/>
+        <br/>
+        <br/>
+{% endblock%}

@@ -1,0 +1,40 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+
+    	{% if info %}
+            {{info}}
+        {% else %}
+        <table class="table table-striped">
+            <caption style="font-size:20px;" class="text-left">{{from}} - {{to}} Internal/External Clients</caption>
+                <thead>
+                    <tr>
+                        <th>Internal/External</th>
+                        <th>Sales($)</th>
+                        <th>No. Customer</th>
+                        <th>No.Invoice</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for group in data %}
+                    <tr>
+                       {%for d in group %}
+                            <td>{{d}}</td>   
+                       {%endfor%}                     
+                    </tr>
+                {%endfor%}
+                </tbody>
+        </table>
+
+        <form id ='downLoad_form' method = 'POST' action = '#' >
+                    {% csrf_token %}
+            <input type="submit" name="excel" value = "Download as Excel"/>
+
+        </form>
+
+        <br/>
+        <br/>
+        <br/>
+
+        {%endif%}
+
+{% endblock %}

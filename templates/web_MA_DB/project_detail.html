@@ -1,0 +1,84 @@
+{% extends 'web_MA_DB/blank.html'%}
+{% block content%}
+
+	{%if p%}
+	<h2>{{p.node.node_name}}</h2>
+	<table class="table table-hover">
+		<caption style="font-size:20px;">Project</caption>
+		<tbody>
+			<tr>
+				<td>Pro_ID</td>
+				<td>{{p.pro_id}}</td>
+			</tr>
+
+			<tr>
+				<td>Node</td>
+				<td>{{p.node}}</td>
+			</tr>
+
+			<tr>
+				<td>Date</td>
+				<td>{{p.pro_date}}</td>
+			</tr>
+			<tr>
+				<td>Topic</td>
+				<td>{{p.description}}</td>
+			</tr>
+			<tr>
+				<td>Service</td>
+				<td>{{p.service}}</td>
+			</tr> 
+			<tr>
+				<td>Instrument</td>
+				<td>{{p.instrument}}</td>
+			</tr>
+			<tr>
+				<td>Person</td>
+				<td>{{p.person}}</td>
+			</tr> 
+			<tr>
+				<td>Organization</td>
+				<td>{{p.organization}}</td>
+			</tr>
+			<tr>
+				<td>No.sample</td>
+				<td>{{p.num_sample}}</td>
+			</tr>
+			<tr>
+				<td>Category</td>
+				<td>{{p.category}}</td>
+			</tr>
+			<tr>
+				<td>Int/Ext</td>
+				{% if 1%}
+				<td>Int</td>
+				{%else%}
+				<td>Ext</td>
+				{% endif%}
+			</tr>
+			<tr>
+				<td>State,Country</td>
+				<td>{{p.state}} {{p.country}}</td>
+			</tr>
+			<tr>
+				<td>UserDefined_1</td>
+				<td>{{p.usertype.type_id}}</td>
+			</tr>
+			<tr>
+				<td>UserDefined_2</td>
+				<td>{{p.userfield.field_id}}</td>
+			</tr>
+			<tr>
+				<td>Subtotal</td>
+				<td>${{p.subtotal}}</td>
+			</tr>
+		</tbody>
+	</table>
+
+	{%else%}
+		<strong> No projects yet in this node.</strong>
+	{% endif %}
+	<h4 align = "right"><a href = "/web_MA_DB/{{p.node.slug}}/projects_list/">Return</a></h4>
+	<br/>
+	<br/>
+{%endblock%}

@@ -1,0 +1,60 @@
+{%extends 'web_MA_DB/blank.html'%}
+{%  block content%}
+    <br/>
+    <br/>
+
+    {% if new_types %}
+    <table class="table table-default">
+        <caption style="font-size:20px;" class="text-left">UserDefined_1 List</caption>
+        <thead>
+        <tr>
+            <td>Defined Abbr.</td>
+            <td>Defined Name</td>
+        </tr>
+        </thead>
+        <tbody>
+            {% for t in new_types%}
+        <tr>
+            <td>{{t.type_id}}</td>
+            <td>{{t.type_name}}</td>
+        </tr>
+            {% endfor%}
+        </tbody>
+    </table> 
+     <div class = "row" align = "right">
+    <a href = "/web_MA_DB/update_type/"><h4>Return</h4></a>
+    </div>
+    <br/>
+    <br/>
+
+  {%else%}  
+    <br/>
+    <br/>
+	<div class = 'row' align="center">
+        {% csrf_token %}
+        <form id="custom_form" method="POST" action = "/web_MA_DB/update_type/" >
+            {% csrf_token %}
+         
+           {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <table >
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                <tr>
+                    <td height='50'>{{ field.label}}&nbsp;</td>
+                    <td height = "50">{{ field }}</td>
+                </tr>
+    
+            {% endfor %}
+            </table>
+            <tr>
+                <td><input type="submit" name="submit" value = "Update"/></td></tr>
+        </form>
+    </div>
+    {% endif%}
+    <br/>
+    <br/>
+
+
+{% endblock%}

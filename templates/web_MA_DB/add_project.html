@@ -1,0 +1,30 @@
+{% extends 'web_MA_DB/blank.html'%}
+
+{% block content%}
+        
+    	<h2>{{node.node_name}}</h2>
+        
+        <strong>Add a Project</strong>
+        <br/><br/>
+    	<form id="project_form" method="post" action = "/web_MA_DB/{{node.slug}}/add_project/" >
+
+    	   {% csrf_token %}
+    	   {% for hidden in form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+            <table>
+            {% for field in form.visible_fields %}
+                {{ field.errors }}
+                <tr>
+                    <td>{{ field.label}}    </td>
+                    <td>  {{ field }}</td>
+                </tr>
+            {% endfor %}
+            </table>
+            <br/>
+            <input type="submit" name="submit" value = "Create Project"/>
+        </form>
+        <br/>
+        <br/>
+        <br/>
+{% endblock%}
